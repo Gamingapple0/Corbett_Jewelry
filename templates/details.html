@@ -1,0 +1,29 @@
+{% extends 'view.html' %}
+
+{% block title %}
+    <title>{{product.name}}</title>
+{% endblock %}
+
+{% block images %}
+    {% for image in images %}
+        <div class="mySlides content">
+            <img src="{{image.img.url}}" style="width:100%" alt='Image'>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block dot %}
+    {% for image in images %}
+        <span class="dot" onclick="currentSlide({{image.id}})"></span>
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div class='padding content'>
+        <h1>{{product.name}}</h1>
+            <p>{{product.desc}}</p>
+            <p>NRS. {{product.price}}</p>
+            <button class = 'buy'>Buy Now</button>
+    </div>
+{% endblock %}
+

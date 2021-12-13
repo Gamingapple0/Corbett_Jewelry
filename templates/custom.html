@@ -1,0 +1,382 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+      #dropdown{
+            margin: 0px;
+            cursor: pointer;
+        }
+      html{
+            scroll-behavior: smooth;
+        }
+      .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index:10;
+            }
+      .sticky + .content {
+            padding-top: 102px;
+            }
+        .dropdown-menu1 {
+        position: absolute;
+        top: 100%;
+        left:-55px;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 10rem;
+        padding: .5rem 0;
+        margin: .125rem 0 0;
+        font-size: 1rem;
+        color: #212529;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: .25rem;
+}
+    @media only screen and (max-width: 990px){
+        .dropdown-menu1 {
+            left: -5px;
+        }
+    }
+    .icon{
+            width: 37px;
+            height: 37px;
+            padding-right: 5px;
+        }
+        .price{
+            height: max-content;
+            background-color: black;
+            color: white;
+            text-decoration-line: none;
+            text-align:center;
+            padding: 15px 0px 15px 0px
+        }
+        .card:hover{
+            box-shadow: 5px 10px 18px #888888;
+        }
+        img{
+            max-height: 230px;
+        }
+    input[type="checkbox"]{
+      display: none;
+    }
+    .label {
+      padding: 10px;
+      display: block;
+      position: relative;
+      margin: 10px;
+      cursor: pointer;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .label::before {
+      background-color: white;
+      color: white;
+      content: " ";
+      display: block;
+      border-radius: 50%;
+      border: 1px solid grey;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+      line-height: 24px;
+      transition-duration: 0.4s;
+      transform: scale(0);
+    }
+    .label img {
+      height: 230px;
+      width: 280px;
+      transition-duration: 0.2s;
+      transform-origin: 50% 50%;
+    }
+    input[type='checkbox']{
+      display: none
+    }
+    :checked+.label {
+      border: 3px solid rgb(73, 142, 231);
+    }
+
+    :checked+.label::before {
+      content: "✓";
+      background-color: rgb(73, 142, 231);
+      transform: scale(1);
+    }
+
+    :checked+.label img {
+      transform: scale(0.9);
+      box-shadow: 0 0 5px #333;
+      
+    }   
+    .card{
+      z-index: -1;
+    }
+    h1{
+      z-index: 0;
+    }
+
+    .buy{
+      position: fixed;
+      margin: 0px 70px 20px;
+      bottom: 0;
+      right: 0;
+      width: 200px;
+      height: 60px;
+      background-color: rgba(8, 7, 7, 0.931);
+      color: white;
+      text-align: center;
+      cursor: pointer;
+    }
+    .buy:hover{
+      background-color: #b6daf4;
+      color: rgba(8, 7, 7, 0.931);
+      transition-duration: 0.5s;
+    }
+    input[type=text],input[type=number],input[type=email], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.labe {
+  padding: 12px;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: rgba(0, 0, 0, 0.89);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  transition-duration: 0.6s ;
+}
+
+input[type=submit]:hover {
+  background-color: #b7dbf5;
+  color: rgba(0, 0, 0, 0.89);
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+      padding-top: 60px;
+    }
+  .modal-content {
+      background-color: #fefefe;
+      margin: 7% auto 5% auto;
+      border: 1px solid #888;
+      width: 35%;
+      display: grid
+  }
+  #home{
+    color: rgb(177 177 177)
+  }
+  #home:hover{
+    color: rgb(0 0 0 / 90%);
+  }
+  .ptop{
+    padding-top: 100px;
+  }
+  .close{
+      text-align: end;
+      cursor:pointer;
+      font-size: 20px;
+      padding: 0px 18px 0px 0px;
+      display: inline-block;
+      margin-top: 15px;
+      
+  }
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+    @media only screen and (max-width: 600px) {
+        .card{
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      }
+    </style>
+{% endblock %}
+
+<!-- main -->
+
+{%block body%}
+<div class="modal" id="modal_id">
+  <div class="container">
+    <form action="purchased/" method="POST">
+      {% csrf_token %}
+      <div class="close">X</div>
+      <br><br>
+      <input type="hidden" name="selected_beads" id="selected_beads" value=''>
+      <div class="row">
+        <div class="col-25">
+          <label for="fname" class="labe">First Name</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="fname" name="name" placeholder="Your name.." required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="pnum" class="labe">Phone Number</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="pnum" name="pnum" placeholder="Your phone number.." required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="email" class="labe" required>E-Mail</label>
+        </div>
+        <div class="col-75">
+          <input type="email" id="email" name="email" placeholder="Your valid email address.." required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="quantity" class="labe">Quantity<label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="quantity" name="quantity" placeholder="Your required quantity.." required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="add" class="labe">Address</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="add" name="add" placeholder="Your delivery address.." required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="einfo" class="labe" required>Extra Information</label>
+        </div>
+        <div class="col-75">
+          <textarea id="einfo" name="einfo" placeholder="Not Required.." style="height:100px"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+  </form>
+</div>
+
+
+<center><h1>Please Select The Beads You Want</h1><br></center>
+<div class="row">
+  {% for bead in beads %}
+    <div class="col-sm-4 col-md-6 col-lg-4 ">
+        <a href="#" style='text-decoration: none; color: black;'>
+            <input type="checkbox" id='{{bead.name}}' value="{{bead.name}}" name='{{bead.name}}' onclick="selectBeads('{{bead.name}}')" >
+            <label for="{{bead.name}}" class='label'>
+                <div class="card" style="width: 18rem; margin-left: 47px; cursor: pointer;">
+                    <img src="{{bead.img.url}}" class="card-img-top" alt="Image">
+                    <div class="card-body" style='padding: 10px 0px 0px 0px;'>
+                        <h5 class="card-title" style="text-align: center ;">{{bead.name}}</h5>
+                        <div class="price">
+                            NRS {{bead.price}}
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </a>
+    </div>
+  {% endfor %}
+</div>
+<footer class="footer"><button type="submit" class="buy">Build This</button></footer>
+{% endblock %}
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+{% block script %}
+<script>
+      var selectedBeads = [];
+      $(document).ready(function(){
+        $(window).scroll(function(){
+          $('h1').addClass('ptop')
+        })
+      })
+      $('#dropdown').click(function(){
+        $('#dropdown-list').toggle();
+        $(this).toggleClass('drop-active')
+      })
+      // $('.navbar-toggler').click(function(){
+      //   $('#navbarSupportedContent').toggleClass("show")
+      // })
+      $('.buy').click(function(){
+        if (selectedBeads.length <= 0){
+          alert('Please select some shit')
+        }else if(selectedBeads.length >= 0){
+          $('#modal_id').css({display:'block'})
+        }
+
+        })
+      $('.close').click(function(){
+        $('.modal').css({display:'none'})
+      })
+
+        function selectBeads(beadsId) {
+          if (selectedBeads.includes(beadsId)){
+             var index_bead = selectedBeads.indexOf(beadsId)
+             if (index_bead > -1){
+              selectedBeads.splice(index_bead,1)
+             }
+          }
+          else{
+            selectedBeads.push(beadsId);
+          }
+          $('#selected_beads').val(selectedBeads)
+        }
+ 
+</script>
+{% endblock %}

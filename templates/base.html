@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Corbett Jewelry</title>
+    <link rel="icon" href="../media/corbett_logo.jpg" type="image/icon type">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <style>
+    @media screen and (max-width: 800px) {
+        body{background-color:#000000}
+        }
+     .page-link{
+    padding: 10px;
+    background-color: #e1e3e5;
+    }
+    .page-link:hover{
+      background-color: #b6daf4;
+      color: rgba(8, 7, 7, 0.931);
+      transition-duration: 0.5s;
+    }
+    body{background-color:#e1e3e5}
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10;
+    }
+.sticky + .content {
+    padding-top: 102px;
+    }
+    </style>
+    {%block style%}
+    {% endblock %}
+    <div class="header" id="myHeader">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                <img src="../media/corbett_banner_logo.jpg" width="30" height="30" class="d-inline-block align-top"
+                    alt="" />
+                Corbett Jewelry
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="scroll-behavior: smooth; background-color: #f8f9fa">
+                        <a class="nav-link home" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'custom' %}">Custom</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <div class="dropdown show">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Contact Us
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="https://www.instagram.com/corbett_jewelry/">Instagram</a>
+                                <a class="dropdown-item" href="mailto:email@example.com">E-Mail</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br /><br />
+    </div>
+</head>
+
+<body>
+    {% block body%}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        
+    <script>
+        window.onscroll = function () {
+            myFunction();
+        };
+
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    </script>
+    {% block script %}
+    {% endblock %}
+</body>
+
+</html>

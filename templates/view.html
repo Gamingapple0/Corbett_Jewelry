@@ -1,0 +1,407 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    * {
+        box-sizing: border-box
+    }
+
+    body {
+        font-family: Verdana, sans-serif;
+        margin: 0
+    }
+
+    .mySlides {
+        display: none
+    }
+
+    img {
+        vertical-align: bottom;
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+        max-width: 500px;
+        position: relative;
+        margin: auto;
+    }
+
+    .padding {
+        padding-left: 40px;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Caption text */
+    .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+        cursor: pointer;
+        height: 4px;
+        width: 25px;
+        margin: 0 2px;
+        background-color: #C0C0C0;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .active,
+    .dot:hover {
+        background-color: whitesmoke;
+    }
+
+    /* Fading animation */
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
+    @-webkit-keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+
+        .prev,
+        .next,
+        .text {
+            font-size: 11px
+        }
+    }
+
+    .buy {
+        text-decoration: none;
+        font-size: 16px;
+        padding: 15px 40px;
+        cursor: pointer;
+        width: fit-content;
+        color: rgba(255, 254, 254, 0.952);
+        background-color: #000000e8;
+        border-radius: 5px;
+    }
+
+    .buy:hover {
+        color: black;
+        background-color: #b7dbf5;
+        transition-duration: 0.5s;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 7% auto 5% auto;
+        border: 1px solid #888;
+        width: 35%;
+        display: grid
+    }
+
+    .close {
+        text-align: end;
+        cursor: pointer;
+        font-size: 20px;
+        padding: 0px 18px 0px 0px;
+        display: inline-block;
+        margin-top: 15px;
+
+    }
+
+    .close:hover {
+        color: red
+    }
+
+    .sub {
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: rgb(255 255 255 / 88%);
+        font-size: 19px;
+        cursor: pointer;
+    }
+
+    .sub:hover {
+        background-color: #b7dbf5;
+        ;
+        color: rgba(0, 0, 0, 0.9);
+        transition-duration: 0.6s;
+        border: none
+    }
+
+    .inp_text {
+        padding-left: 10px;
+    }
+
+    .icon {
+        width: 37px;
+        height: 37px;
+        padding-right: 5px;
+    }
+
+    input[type=text],
+    input[type=number],
+    input[type=email],
+    select,
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+
+
+    .labe {
+        padding: 12px;
+        display: inline-block;
+    }
+
+    input[type=submit] {
+        background-color: rgba(0, 0, 0, 0.89);
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+        transition-duration: 0.6s;
+    }
+
+    input[type=submit]:hover {
+        background-color: #b7dbf5;
+        color: rgba(0, 0, 0, 0.89);
+    }
+
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+    }
+
+    .col-75 {
+        float: left;
+        width: 75%;
+        margin-top: 6px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="modal" id="modal_id">
+    <div class="container">
+        <form action="purchased/" method="POST">
+            {% csrf_token %}
+            <div class="close">X</div>
+            <br><br>
+            <input type="hidden" name="selected_beads" id="selected_beads" value=''>
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname" class="labe">First Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="fname" name="name" placeholder="Your name.." required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="pnum" class="labe">Phone Number</label>
+                </div>
+                <div class="col-75">
+                    <input type="number" id="pnum" name="pnum" placeholder="Your phone number.." required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="email" class="labe" required>E-Mail</label>
+                </div>
+                <div class="col-75">
+                    <input type="email" id="email" name="email" placeholder="Your valid email address.." required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="quantity" class="labe">Quantity<label>
+                </div>
+                <div class="col-75">
+                    <input type="number" id="quantity" name="quantity" placeholder="Your required quantity.." required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="add" class="labe">Address</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="add" name="add" placeholder="Your delivery address.." required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="einfo" class="labe" required>Extra Information</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="einfo" name="einfo" placeholder="Not Required.." style="height:100px"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    </form>
+</div>
+</div>
+<div class="slideshow-container">
+    {% block title %}<title>Corbett_Jewlry</title>{% endblock %}
+    {% block images %}
+
+    {% endblock %}
+    <a class="prev" style="color: white" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" style="color: white" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br>
+<div style="text-align:center">
+    {% block dot %}
+
+    {% endblock %}
+</div>
+
+{% block content %}
+
+{% endblock %}
+<br>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    function myFunction(){}
+    
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+
+    $('.buy').click(function () {
+        $('#modal_id').css({ display: 'block' })
+    })
+    $('.close').click(function () {
+        $('.modal').css({ display: 'none' })
+    })
+// $('#dropdown').click(function(){
+//         $('#dropdown-list').toggle();
+//         $(this).toggleClass('drop-active')
+//     })
+</script>
+{% endblock %}
