@@ -15,6 +15,7 @@ import os
 import django_heroku
 import dj_database_url
 from decouple import config
+import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -137,5 +138,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'corbettjewelry991@gmail.com'
 EMAIL_HOST_PASSWORD = 'Corbett991'
 EMAIL_USE_TLS = True
+
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 django_heroku.settings(locals())
