@@ -50,10 +50,11 @@ def purchased(request, slug):
                       f"""
                         Name: {name}
                         Number: {number}
+                        E-mail: {email}
                         Quantity: {quantity}
                         Address: {address}
                         Extra Info: {extra}
-    """, email, ['madhikarmianshu@gmail.com'])
+    """, email, ['corbettjewelry991@gmail.com'])
             return render(request, 'purchased.html', {'name': name})
         else:
             selected_beads = request.POST['selected_beads']
@@ -71,7 +72,7 @@ Number: {number}
 Quantity: {quantity}
 Address: {address}
 Extra Info: {extra}
-            """, email, ['madhikarmianshu@gmail.com'])
+            """, email, ['corbettjewelry991@gmail.com'])
             return render(request, 'purchased.html', {'name': name})
     else:
         return render(request,'purchased.html')
