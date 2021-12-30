@@ -84,14 +84,14 @@ WSGI_APPLICATION = 'Corbett_Jewelry.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
-# DATABASES = { 'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2', 'NAME':'postgresql-animated-16571', 'USER':'tywjnyyjanwnpk', 'PASSWORD':'9d4d7bfa106f0b398191c31c58b1034b4c384949cc2f0f4f7c9db809dd00dd96', 'HOST': 'ec2-3-217-216-13.compute-1.amazonaws.com', 'PORT':'5432'}}
+DATABASES = { 'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2', 'NAME':'postgresql-animated-16571', 'USER':'tywjnyyjanwnpk', 'PASSWORD':'9d4d7bfa106f0b398191c31c58b1034b4c384949cc2f0f4f7c9db809dd00dd96', 'HOST': 'ec2-3-217-216-13.compute-1.amazonaws.com', 'PORT':'5432'}}
 
 
 
