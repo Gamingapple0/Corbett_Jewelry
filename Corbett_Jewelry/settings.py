@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'Corbett_Jewelry.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':'postgresql-fitted-71386', 'USER':'igrhrohdhckxcy',
+        'NAME':'d9pqr25tpvtge7', 'USER':'igrhrohdhckxcy',
         'PASSWORD':'d00cf888b79b8ce8c30790ff63bf1c1d3f9053003b8cd2a02ee17183127125a9',
         'HOST': 'ec2-34-205-46-149.compute-1.amazonaws.com',
         'PORT':'5432'
