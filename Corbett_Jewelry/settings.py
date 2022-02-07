@@ -94,9 +94,9 @@ WSGI_APPLICATION = 'Corbett_Jewelry.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':'postgresql-animated-16571', 'USER':'tywjnyyjanwnpk',
-        'PASSWORD':'9d4d7bfa106f0b398191c31c58b1034b4c384949cc2f0f4f7c9db809dd00dd96',
-        'HOST': 'ec2-3-217-216-13.compute-1.amazonaws.com',
+        'NAME':'postgresql-fitted-71386', 'USER':'igrhrohdhckxcy',
+        'PASSWORD':'d00cf888b79b8ce8c30790ff63bf1c1d3f9053003b8cd2a02ee17183127125a9',
+        'HOST': 'ec2-34-205-46-149.compute-1.amazonaws.com',
         'PORT':'5432'
     }
 }
@@ -158,7 +158,7 @@ EMAIL_USE_TLS = True
 
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# # DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # django_heroku.settings(locals())
