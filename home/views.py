@@ -15,7 +15,9 @@ from django.core.mail import send_mail
 #     last += max_products_per_page
 
 
-
+def home(request):
+    return render(request, 'index.html')
+    
 # def home(request):
 #     return render(request, 'index.html', {'products' : home_page,'nxt':1,'prev':len(divided_product_list)})
 
