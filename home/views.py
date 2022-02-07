@@ -17,6 +17,12 @@ from django.core.mail import send_mail
 
 def home(request):
     return render(request, 'index.html')
+
+def nxt_pg(request):
+    return render(request, 'index.html')
+
+def detail_view(request):
+    return render(request, 'index.html')
     
 # def home(request):
 #     return render(request, 'index.html', {'products' : home_page,'nxt':1,'prev':len(divided_product_list)})
