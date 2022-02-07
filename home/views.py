@@ -2,17 +2,19 @@ from django.shortcuts import render, get_object_or_404, HttpResponse
 from .models import Product, Images, Beads
 from django.core.mail import send_mail
 
-products = Product.objects.all()
-max_products_per_page = 9
-home_page = products[:max_products_per_page]
-divided_product_list = []
-first = max_products_per_page
-last = max_products_per_page + max_products_per_page
-curr_page = 1
-for i in range(max_products_per_page,len(products),max_products_per_page):
-    divided_product_list.append(products[first:last])
-    first = last
-    last += max_products_per_page
+def req_prod():
+    products = Product.objects.all()
+    max_products_per_page = 9
+    home_page = products[:max_products_per_page]
+    divided_product_list = []
+    first = max_products_per_page
+    last = max_products_per_page + max_products_per_page
+    curr_page = 1
+    for i in range(max_products_per_page,len(products),max_products_per_page):
+        divided_product_list.append(products[first:last])
+        first = last
+        last += max_products_per_page
+    return home_page, divided_product_list
 
 
 # def home(request):
@@ -25,9 +27,11 @@ for i in range(max_products_per_page,len(products),max_products_per_page):
 #     return render(request, 'index.html')
     
 def home(request):
+    home_page, divided_product_list = req_prod()
     return render(request, 'index.html', {'products' : home_page,'nxt':1,'prev':len(divided_product_list)})
 
 def nxt_pg(request,num):
+    home_page, divided_product_list = req_prod()
     if num > len(divided_product_list) or num == 0:
         return home(request)
     elif num < 0:
