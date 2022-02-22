@@ -27,7 +27,6 @@ for i in range(max_products_per_page,len(products),max_products_per_page):
     divided_product_list.append(products[first:last])
     first = last
     last += max_products_per_page
-return home_page, divided_product_list
 
 
 # def home(request):
