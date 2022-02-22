@@ -16,6 +16,19 @@ def req_prod():
         last += max_products_per_page
     return home_page, divided_product_list
 
+products = Product.objects.all()
+max_products_per_page = 9
+home_page = products[:max_products_per_page]
+divided_product_list = []
+first = max_products_per_page
+last = max_products_per_page + max_products_per_page
+curr_page = 1
+for i in range(max_products_per_page,len(products),max_products_per_page):
+    divided_product_list.append(products[first:last])
+    first = last
+    last += max_products_per_page
+return home_page, divided_product_list
+
 
 # def home(request):
 #     return render(request, 'index.html')
